@@ -1,13 +1,11 @@
 FROM ubuntu:latest
 MAINTAINER Mike Mackintosh <m@zyp.io>
 
-# Add brightbox
-RUN apt-get install -y software-properties-common
-RUN apt-add-repository ppa:brightbox/ruby-ng-experimental
+# Update apt
 RUN apt-get update
 
 # Install Ruby
-RUN apt-get install -y ruby2.1 ruby2.1-dev
+RUN apt-get install -y curl wget git golang
 
 # Install deps
 RUN apt-get install -y \
@@ -16,16 +14,15 @@ RUN apt-get install -y \
         libxml2-dev \
         libxslt1-dev \
         git \
-        awscli \
-        jekyll \
-        nodejs
+        awscli
+
+# Download and install Hugo
+RUN wget https://github.com/spf13/hugo/releases/download/v0.15/hugo_0.15_amd64.deb && dpkg -i hugo_0.15_amd64.deb
+
 
 # Cleanup Apt
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install bundler
-RUN gem install bundler
 
 # Er, sure, why not
 CMD ["/bin/bash"]
