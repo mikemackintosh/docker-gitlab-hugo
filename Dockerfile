@@ -14,7 +14,8 @@ RUN apt-get install -y \
         libxml2-dev \
         libxslt1-dev \
         git \
-        awscli
+        awscli \
+        nodejs
 
 # Download and install Hugo
 RUN wget https://github.com/spf13/hugo/releases/download/v0.15/hugo_0.15_amd64.deb && dpkg -i hugo_0.15_amd64.deb
@@ -23,6 +24,7 @@ RUN wget https://github.com/spf13/hugo/releases/download/v0.15/hugo_0.15_amd64.d
 # Cleanup Apt
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN npm install uglifycss -g
 
 # Er, sure, why not
 CMD ["/bin/bash"]
