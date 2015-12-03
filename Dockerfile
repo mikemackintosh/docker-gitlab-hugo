@@ -22,6 +22,7 @@ RUN wget https://github.com/spf13/hugo/releases/download/v0.15/hugo_0.15_amd64.d
 # Cleanup Apt
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN npm install uglifycss -g
 
 # Er, sure, why not
