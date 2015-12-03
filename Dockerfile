@@ -10,12 +10,10 @@ RUN apt-get install -y curl wget git golang
 # Install deps
 RUN apt-get install -y \
         build-essential \
-        zlib1g-dev \
-        libxml2-dev \
-        libxslt1-dev \
+        zlib1g-dev libxml2-dev libxslt1-dev \
         git \
         awscli \
-        nodejs
+        nodejs npm
 
 # Download and install Hugo
 RUN wget https://github.com/spf13/hugo/releases/download/v0.15/hugo_0.15_amd64.deb && dpkg -i hugo_0.15_amd64.deb
